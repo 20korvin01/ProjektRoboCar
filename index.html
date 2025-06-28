@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robocar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body>
+    <header>
+        <h1>Robocar Info-Dashboard</h1>
+    </header>
+    <aside>
+        <div class="dropdown">
+            <!-- Überschrift -->
+            <h3><i class="bi bi-info-circle-fill"></i> Components and Sensors</h3>
+            <!-- Dropdowns für die einzelnen Komponenten -->
+            <!-- HC-SR04 Front -->
+            <button class="dropdown-title" onclick="toggleDropdown('hc-sr04-front-info')">HC-SR04 - front</button>
+            <div class="dropdown-content" id="hc-sr04-front-info">
+                <img src="img/hc-sr04.png"
+                    style="width:40%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Dimensions</h4>
+                    <p>Approx. 45 mm × 20 mm × 15 mm</p>
+                </div>
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Technical Specifications</h4>
+                    <ul>
+                        <li>Operating Voltage: 5 V DC</li>
+                        <li>Current Consumption: approx. 15 mA</li>
+                        <li>Measuring Range: 2 cm – 400 cm</li>
+                        <li>Accuracy: ±3 mm</li>
+                        <li>Signal Level: 5 V TTL</li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h4><i class="bi bi-bezier2"></i> Working Principle</h4>
+                    <p>The sensor sends a 40 kHz ultrasonic pulse via the trigger pin. The reflected signal is received
+                        on
+                        the echo pin. The distance is calculated using the travel time:</p>
+                    <p><code>Distance = (Time × Speed of Sound) / 2</code></p>
+                    <p>Speed of sound in air ≈ 343 m/s</p>
+                </div>
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Pinout</h4>
+                    <ul>
+                        <li>VCC – Power Supply (5 V)</li>
+                        <li>Trig – Trigger Signal (Input)</li>
+                        <li>Echo – Echo Signal (Output)</li>
+                        <li>GND – Ground</li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Obstacle detection in robotics</li>
+                        <li>Level measurement (e.g., tanks)</li>
+                        <li>Parking assistance systems</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- HC-SR04 Back -->
+            <button class="dropdown-title" onclick="toggleDropdown('hc-sr04-back-info')"
+                style="margin-top: 10px;">HC-SR04 - back</button>
+            <div class="dropdown-content" id="hc-sr04-back-info">
+                <img src="img/hc-sr04.png"
+                    style="width:40%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Dimensions</h4>
+                    <p>Approx. 45 mm × 20 mm × 15 mm</p>
+                </div>
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Technical Specifications</h4>
+                    <ul>
+                        <li>Operating Voltage: 5 V DC</li>
+                        <li>Current Consumption: approx. 15 mA</li>
+                        <li>Measuring Range: 2 cm – 400 cm</li>
+                        <li>Accuracy: ±3 mm</li>
+                        <li>Signal Level: 5 V TTL</li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h4><i class="bi bi-bezier2"></i> Working Principle</h4>
+                    <p>The sensor sends a 40 kHz ultrasonic pulse via the trigger pin. The reflected signal is received
+                        on
+                        the echo pin. The distance is calculated using the travel time:</p>
+                    <p><code>Distance = (Time × Speed of Sound) / 2</code></p>
+                    <p>Speed of sound in air ≈ 343 m/s</p>
+                </div>
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Pinout</h4>
+                    <ul>
+                        <li>VCC – Power Supply (5 V)</li>
+                        <li>Trig – Trigger Signal (Input)</li>
+                        <li>Echo – Echo Signal (Output)</li>
+                        <li>GND – Ground</li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Obstacle detection in robotics</li>
+                        <li>Level measurement (e.g., tanks)</li>
+                        <li>Parking assistance systems</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Infrared Obstacle Avoidance Sensor -->
+            <button class="dropdown-title" onclick="toggleDropdown('ir-obstacle-info')" style="margin-top: 10px;">
+                Infrared Obstacle Avoidance Sensor
+            </button>
+            <div class="dropdown-content" id="ir-obstacle-info">
+                <img src="img/ir_obstacle.png"
+                    style="width:50%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Dimensions</h4>
+                    <p>Approx. 48 mm × 14 mm × 8 mm</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Technical Specifications</h4>
+                    <ul>
+                        <li>Operating Voltage: 3.3 V – 5 V DC</li>
+                        <li>Current Consumption: ≤ 20 mA</li>
+                        <li>Detection Range: 2 cm – 30 cm (adjustable via potentiometer)</li>
+                        <li>Output Type: Digital (HIGH/LOW)</li>
+                        <li>Infrared Wavelength: ~940 nm</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-bezier2"></i> Working Principle</h4>
+                    <p>The sensor continuously emits infrared light. When an object is in front of the sensor, the IR
+                        light is reflected and detected by the receiver. Based on the intensity of the reflection, the
+                        digital output changes state.</p>
+                    <p>The detection range can be adjusted using the onboard potentiometer.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Pinout</h4>
+                    <ul>
+                        <li>VCC – Power Supply (3.3 V – 5 V)</li>
+                        <li>GND – Ground</li>
+                        <li>OUT – Digital Output (HIGH = no obstacle, LOW = obstacle detected)</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Obstacle avoidance in robotics</li>
+                        <li>Automatic door systems</li>
+                        <li>Object detection in toys</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mecanum Wheels -->
+            <button class="dropdown-title" onclick="toggleDropdown('mecanum-info')" style="margin-top: 10px;">
+                Mecanum Wheels
+            </button>
+            <div class="dropdown-content" id="mecanum-info">
+                <img src="img/meccanum.png"
+                    style="width:50%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Dimensions</h4>
+                    <p>Typical size: 60 mm – 100 mm diameter, 30 mm – 50 mm width (varies by model)</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Key Features</h4>
+                    <ul>
+                        <li>Omnidirectional movement capability</li>
+                        <li>45° angled rollers enable lateral, diagonal, and rotational movement</li>
+                        <li>Typically used in 4-wheel configuration (X or O pattern)</li>
+                        <li>Requires individual motor control for each wheel</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-bezier2"></i> Working Principle</h4>
+                    <p>Mecanum wheels use angled rollers around the circumference to generate movement in multiple
+                        directions. By adjusting the speed and direction of each wheel, the vehicle can move forward,
+                        backward, sideways, diagonally, and rotate on the spot.</p>
+                    <p>Motion is achieved through vector addition of the individual wheel forces.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Mounting</h4>
+                    <ul>
+                        <li>Each wheel is mounted to a separate motor shaft</li>
+                        <li>Proper roller orientation is critical (front-left and rear-right: rollers form “/”)</li>
+                        <li>Often paired with encoders for precision control</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Mobile robots requiring high maneuverability</li>
+                        <li>Automated Guided Vehicles (AGVs)</li>
+                        <li>Warehouse and logistics platforms</li>
+                        <li>Research and education projects</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- LCD Display -->
+            <button class="dropdown-title" onclick="toggleDropdown('display-info')" style="margin-top: 10px;">LCD
+                Display</button>
+            <div class="dropdown-content" id="display-info">
+                <img src="img/display.png"
+                    style="width:70%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Description</h4>
+                    <p>The LCD display shows key information such as speed, direction, and sensor readings.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Status monitoring</li>
+                        <li>User interface for robots</li>
+                        <li>Debugging and diagnostics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- LED Bar -->
+            <button class="dropdown-title" onclick="toggleDropdown('led-bar-info')" style="margin-top: 10px;">LED
+                Bar</button>
+            <div class="dropdown-content" id="led-bar-info">
+                <img src="img/led_bar.png"
+                    style="width:50%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Description</h4>
+                    <p>The LED bar displays battery charge levels and can also be used for visual signaling.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Battery level indication</li>
+                        <li>Visual status signals</li>
+                        <li>Interactive feedback in robotics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Servo Motor -->
+            <button class="dropdown-title" onclick="toggleDropdown('servo-info')" style="margin-top: 10px;">Servo
+                Motor</button>
+            <div class="dropdown-content" id="servo-info">
+                <img src="img/servo.png"
+                    style="width:40%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Description</h4>
+                    <p>The servo motor is used to control robotic arms or other movable components.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-bezier2"></i> Working Principle</h4>
+                    <p>Servo motors use feedback to precisely control angular position. They typically accept PWM
+                        signals to determine target angle.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Robotic arms</li>
+                        <li>Steering mechanisms</li>
+                        <li>Camera pan/tilt systems</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Microphone -->
+            <button class="dropdown-title" onclick="toggleDropdown('microphone-info')"
+                style="margin-top: 10px;">Microphone</button>
+            <div class="dropdown-content" id="microphone-info">
+                <img src="img/microphone.png"
+                    style="width:30%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Description</h4>
+                    <p>The microphone allows voice recognition and interaction with the robot via sound input.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Voice control</li>
+                        <li>Sound-based interaction</li>
+                        <li>Environmental audio monitoring</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- MPU6050 -->
+            <button class="dropdown-title" onclick="toggleDropdown('mpu6050-info')"
+                style="margin-top: 10px;">MPU6050</button>
+            <div class="dropdown-content" id="mpu6050-info">
+                <img src="img/mpu6050.png"
+                    style="width:30%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Description</h4>
+                    <p>The MPU6050 is a 6-axis motion tracking sensor that provides acceleration and gyroscope data.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-bezier2"></i> Working Principle</h4>
+                    <p>Combines a 3-axis accelerometer and a 3-axis gyroscope to detect motion, tilt, and rotation.
+                        Communicates via I²C.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Self-balancing robots</li>
+                        <li>Motion detection</li>
+                        <li>Orientation tracking</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Buttons -->
+            <button class="dropdown-title" onclick="toggleDropdown('buttons-info')"
+                style="margin-top: 10px;">Buttons</button>
+            <div class="dropdown-content" id="buttons-info">
+                <img src="img/buttons.png"
+                    style="width:50%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Description</h4>
+                    <p>The buttons allow manual control of the robot and interaction with the system.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Manual override</li>
+                        <li>Mode selection</li>
+                        <li>User input interface</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Camera -->
+            <button class="dropdown-title" onclick="toggleDropdown('camera-info')"
+                style="margin-top: 10px;">Camera</button>
+            <div class="dropdown-content" id="camera-info">
+                <img src="img/camera.png"
+                    style="width:30%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Description</h4>
+                    <p>The camera enables visual monitoring of the environment and supports computer vision
+                        applications.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Object detection</li>
+                        <li>Line following</li>
+                        <li>Remote surveillance</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!-- Weitere Dropdowns nach gleichem Muster -->
+    </aside>
+    <div id="viewer-container">
+        <!-- Das Canvas wird hier per JS eingefügt -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/PLYLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/OBJLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/MTLLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="model.js"></script>
+    <script src="dropdown.js"></script>
+</body>
+
+</html>
