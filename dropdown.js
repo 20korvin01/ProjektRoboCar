@@ -1,6 +1,11 @@
 // Kamera-Positionen für jede Komponente
 const componentCameraPositions = {
-    'mecanum-info': [-0.000022849681043455115, -0.35786716691570847, -0.00010329167066451409],
+    'mecanum-info': [
+        [0.4227505420384501, -0.1532568065994152, -0.04352390650136645], // ul
+        [-0.000022849681043455115, -0.35786716691570847, -0.00010329167066451409], // ll
+        [2.4078865186641126e-8, 0.4517742799228204, 4.511522501995478e-7], // ur
+        [-0.3512126223891305, 0.28194998222723977, 0.03541047015494677] // lr
+    ],
     'hc-sr04-back-info': [-0.2732457892896901, -0.11971781639553765, 0.028883146379215654],
     'hc-sr04-front-info': [0.22767587768799008, 0.11521654952389553, -0.14089847340020994],
     'display-info': [-0.05208156945891421, -0.07187811993347938, -0.23371145884942107],
@@ -17,7 +22,6 @@ const componentCameraPositions = {
 function animateCameraTo(target, duration = 600) {
     if (typeof camera === 'undefined') return;
     const start = { x: camera.position.x, y: camera.position.y, z: camera.position.z };
-    console.log('Kamera-Position:', start);
     const end = { x: target[0], y: target[1], z: target[2] };
     const startTime = performance.now();
     function animate(now) {
@@ -39,7 +43,7 @@ function animateCameraTo(target, duration = 600) {
     requestAnimationFrame(animate);
 }
 
-function toggleDropdown(id) {
+function toggleDropdown(id, specificWheel = null) {
     // Andere Dropdowns schließen
     document.querySelectorAll('.dropdown-content.active').forEach(el => {
         if (el.id !== id) el.classList.remove('active');
@@ -52,7 +56,23 @@ function toggleDropdown(id) {
 
     // Kamera-Position animiert setzen, wenn geöffnet
     if (!wasActive && componentCameraPositions[id] && typeof camera !== 'undefined') {
-        animateCameraTo(componentCameraPositions[id]);
+        let targetPosition = componentCameraPositions[id];
+        
+        // Spezielle Behandlung für Mecanum-Räder
+        if (id === 'mecanum-info' && Array.isArray(targetPosition[0])) {
+            if (specificWheel) {
+                // Spezifisches Rad wurde bereits in handleSphereClick behandelt
+                // Keine weitere Aktion nötig
+                return;
+            } else {
+                // Zufällige Auswahl nur wenn vom Dropdown-Button geklickt
+                const randomIndex = Math.floor(Math.random() * targetPosition.length);
+                targetPosition = targetPosition[randomIndex];
+                console.log(`Zufällig ausgewähltes Mecanum-Rad: ${['ul', 'll', 'ur', 'lr'][randomIndex]}`);
+            }
+        }
+        
+        animateCameraTo(targetPosition);
     }
     // Kamera zurück zur Standardposition, wenn geschlossen
     if (wasActive && typeof camera !== 'undefined') {
