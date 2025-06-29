@@ -2,9 +2,14 @@
 
 Ein interaktives 3D-Dashboard zur Visualisierung und Erkundung von Roboterkomponenten und Sensoren.
 
+**🌐 Live Demo**: [https://20korvin01.github.io/ProjektRoboCar/](https://20korvin01.github.io/ProjektRoboCar/)
+
 ## 📋 Projektübersicht
 
 Das RoboCar Info-Dashboard ist eine webbasierte 3D-Anwendung, die es Benutzern ermöglicht, verschiedene Roboterkomponenten zu erkunden und detaillierte Informationen über deren Funktionsweise zu erhalten. Das Projekt kombiniert Three.js für die 3D-Visualisierung mit einem informativen Dropdown-System.
+
+**Erstellt für**: Veranstaltung "Visualization of Geodata in 2D, 3D and 4D"  
+**Autor**: Korvin Brecht
 
 ## ✨ Features
 
@@ -39,7 +44,11 @@ Das RoboCar Info-Dashboard ist eine webbasierte 3D-Anwendung, die es Benutzern e
 
 ## 🚀 Installation & Setup
 
-### Voraussetzungen
+### Live Demo
+**Direkt ausprobieren**: [https://20korvin01.github.io/ProjektRoboCar/](https://20korvin01.github.io/ProjektRoboCar/)
+
+### Lokale Installation
+#### Voraussetzungen
 - Moderner Webbrowser (Chrome, Firefox, Safari, Edge)
 - Lokaler Webserver (empfohlen) oder Live Server Extension
 
@@ -62,8 +71,12 @@ ProjektRoboCar/
 ```
 
 ### Starten der Anwendung
-1. Alle Dateien in einen Ordner kopieren
-2. Lokalen Webserver starten oder Live Server verwenden
+**Option 1 - Live Demo** (empfohlen):
+- Einfach den Link öffnen: [https://20korvin01.github.io/ProjektRoboCar/](https://20korvin01.github.io/ProjektRoboCar/)
+
+**Option 2 - Lokale Installation**:
+1. Repository klonen oder Dateien herunterladen
+2. Lokalen Webserver starten oder Live Server Extension verwenden
 3. `index.html` im Browser öffnen
 
 ## 🎮 Bedienung
@@ -144,24 +157,16 @@ newComponentDot.userData = {
 - **Touch-Geräte**: Hover-Effekte funktionieren anders auf Touch-Screens
 - **Lokale Dateien**: Einige Browser blockieren lokale Datei-Zugriffe (CORS)
 
-## 🔮 Zukünftige Erweiterungen
-
-- [ ] Touch-optimierte Steuerung
-- [ ] Animierte Komponentendemonstration
-- [ ] Mehrsprachige Unterstützung
-- [ ] VR/AR-Kompatibilität
-- [ ] Realzeit-Sensordaten-Integration
-- [ ] Export-Funktionen für Kamera-Positionen
-
 ## 📄 Lizenz
 
-Dieses Projekt ist für Bildungszwecke erstellt. Verwendete Bibliotheken unterliegen ihren jeweiligen Lizenzen.
+Dieses Projekt wurde für die universitäre Veranstaltung "Visualization of Geodata in 2D, 3D and 4D" erstellt. Es dient Bildungs- und Demonstrationszwecken. Verwendete Bibliotheken (Three.js, Bootstrap Icons) unterliegen ihren jeweiligen Open-Source-Lizenzen.
 
 ## 👥 Mitwirkende
 
-- Entwicklung: [Ihr Name]
-- 3D-Modell: [Modell-Ersteller]
-- UI/UX Design: [Designer]
+- **Entwicklung**: Korvin Brecht
+- **Projekt für**: Veranstaltung "Visualization of Geodata in 2D, 3D and 4D"
+- **3D-Modell**: RoboCar-Modell mit Sensoren und Komponenten
+- **Framework**: Three.js für 3D-Visualisierung
 
 ## 📞 Support
 
