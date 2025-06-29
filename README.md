@@ -1,1 +1,175 @@
 # ProjektRoboCar
+
+Ein interaktives 3D-Dashboard zur Visualisierung und Erkundung von Roboterkomponenten und Sensoren.
+
+## 📋 Projektübersicht
+
+Das RoboCar Info-Dashboard ist eine webbasierte 3D-Anwendung, die es Benutzern ermöglicht, verschiedene Roboterkomponenten zu erkunden und detaillierte Informationen über deren Funktionsweise zu erhalten. Das Projekt kombiniert Three.js für die 3D-Visualisierung mit einem informativen Dropdown-System.
+
+## ✨ Features
+
+- **Interaktive 3D-Visualisierung**: Vollständig navigierbares 3D-Modell eines Roboter-Cars
+- **Hover-Effekte**: Unsichtbare Hotspots werden beim Überfahren mit der Maus sichtbar
+- **Klickbare Komponenten**: Direkte Interaktion mit spezifischen Roboterteilen
+- **Automatische Kamera-Navigation**: Smooth camera transitions zu fokussierten Komponenten
+- **Detaillierte Komponenteninformationen**: Umfassende technische Spezifikationen für jeden Sensor
+- **Responsive Design**: Funktioniert auf verschiedenen Bildschirmgrößen
+
+## 🎯 Verfügbare Komponenten
+
+### Antriebssystem
+- **Mecanum Wheels (4x)**: Omnidirektionale Räder für erweiterte Manövrierfähigkeit
+  - Upper Left (ul), Lower Left (ll), Upper Right (ur), Lower Right (lr)
+  - Individuelle Kamera-Positionen für jedes Rad
+
+### Sensoren
+- **HC-SR04 Ultraschallsensoren**: 
+  - Front-Sensor für Hinderniserkennung
+  - Back-Sensor für Rückwärtsfahrt
+- **IR Obstacle Avoidance Sensor**: Infrarot-Hindernissensor
+- **MPU6050**: 6-Achsen-Bewegungssensor (Accelerometer + Gyroscope)
+- **Camera**: Visueller Sensor für Computer Vision
+- **Microphone**: Audio-Eingabegerät
+
+### Anzeige & Steuerung
+- **LCD Display**: Informationsanzeige
+- **LED Bar**: Status- und Batterieanzeige
+- **Buttons**: Manuelle Steuerungselemente
+- **Servo Motor**: Präzise Bewegungssteuerung
+
+## 🚀 Installation & Setup
+
+### Voraussetzungen
+- Moderner Webbrowser (Chrome, Firefox, Safari, Edge)
+- Lokaler Webserver (empfohlen) oder Live Server Extension
+
+### Dateien
+```
+ProjektRoboCar/
+├── index.html          # Haupt-HTML-Datei
+├── model.js            # 3D-Szene und Interaktionslogik
+├── dropdown.js         # Dropdown-Funktionalität und Kamera-Steuerung
+├── style.css           # Styling
+├── model/
+│   ├── Mesh.obj        # 3D-Modell
+│   ├── Mesh.mtl        # Material-Definitionen
+│   └── Mesh.jpg        # Texturen
+└── img/                # Komponentenbilder
+    ├── hc-sr04.png
+    ├── meccanum.png
+    ├── camera.png
+    └── ...
+```
+
+### Starten der Anwendung
+1. Alle Dateien in einen Ordner kopieren
+2. Lokalen Webserver starten oder Live Server verwenden
+3. `index.html` im Browser öffnen
+
+## 🎮 Bedienung
+
+### Maus-Steuerung
+- **Linke Maustaste + Ziehen**: 3D-Modell rotieren
+- **Mausrad**: Zoomen
+- **Hover über Komponenten**: Hotspots werden sichtbar
+- **Klick auf Komponenten**: Öffnet entsprechendes Info-Panel und positioniert Kamera
+
+### Dropdown-Navigation
+- **Direkte Auswahl**: Klick auf Dropdown-Buttons in der Seitenleiste
+- **Mecanum Wheels**: 
+  - Dropdown-Button → Zufällige Rad-Auswahl
+  - Direkter Klick auf Rad → Spezifische Kamera-Position
+
+## 🔧 Technische Details
+
+### Verwendete Technologien
+- **Three.js**: 3D-Grafik-Engine
+- **HTML5 + CSS3**: Frontend-Struktur und Styling
+- **JavaScript ES6+**: Interaktionslogik
+- **Bootstrap Icons**: Icon-Set für UI-Elemente
+
+### Kamera-System
+```javascript
+// Beispiel Kamera-Positionen
+const componentCameraPositions = {
+    'mecanum-info': [
+        [0.42, -0.15, -0.04], // ul
+        [0.00, -0.36, 0.00],  // ll
+        [0.00, 0.45, 0.00],   // ur
+        [-0.35, 0.28, 0.04]   // lr
+    ],
+    'hc-sr04-back-info': [-0.27, -0.12, 0.03],
+    // ...weitere Positionen
+};
+```
+
+### 3D-Hotspot-System
+- Unsichtbare Kugeln (`opacity: 0`) an Komponentenpositionen
+- Raycasting für Maus-Interaktion
+- Dynamische Sichtbarkeit beim Hovern
+
+## 🎨 Anpassung
+
+### Neue Komponenten hinzufügen
+1. **3D-Position ermitteln**: Koordinaten im 3D-Modell bestimmen
+2. **Hotspot erstellen** in `model.js`:
+```javascript
+const newComponentDot = new THREE.Mesh(sphereGeometry, material);
+newComponentDot.position.set(x, y, z);
+newComponentDot.userData = { 
+    dropdownId: 'new-component-info', 
+    componentName: 'New Component' 
+};
+```
+3. **Dropdown hinzufügen** in `index.html`
+4. **Kamera-Position definieren** in `dropdown.js`
+
+### Styling anpassen
+- CSS-Variablen in `style.css` für Farben und Abstände
+- Bootstrap Icons für neue Symbole
+- Responsive Breakpoints anpassen
+
+## 📱 Browser-Kompatibilität
+
+| Browser | Version | Status |
+|---------|---------|--------|
+| Chrome  | 90+     | ✅ Vollständig unterstützt |
+| Firefox | 88+     | ✅ Vollständig unterstützt |
+| Safari  | 14+     | ✅ Vollständig unterstützt |
+| Edge    | 90+     | ✅ Vollständig unterstützt |
+
+## 🐛 Bekannte Probleme
+
+- **Performance**: Komplexe 3D-Modelle können auf älteren Geräten langsam sein
+- **Touch-Geräte**: Hover-Effekte funktionieren anders auf Touch-Screens
+- **Lokale Dateien**: Einige Browser blockieren lokale Datei-Zugriffe (CORS)
+
+## 🔮 Zukünftige Erweiterungen
+
+- [ ] Touch-optimierte Steuerung
+- [ ] Animierte Komponentendemonstration
+- [ ] Mehrsprachige Unterstützung
+- [ ] VR/AR-Kompatibilität
+- [ ] Realzeit-Sensordaten-Integration
+- [ ] Export-Funktionen für Kamera-Positionen
+
+## 📄 Lizenz
+
+Dieses Projekt ist für Bildungszwecke erstellt. Verwendete Bibliotheken unterliegen ihren jeweiligen Lizenzen.
+
+## 👥 Mitwirkende
+
+- Entwicklung: [Ihr Name]
+- 3D-Modell: [Modell-Ersteller]
+- UI/UX Design: [Designer]
+
+## 📞 Support
+
+Bei Fragen oder Problemen:
+1. README.md durchlesen
+2. Browser-Konsole auf Fehler prüfen
+3. Lokalen Webserver verwenden statt direkten Datei-Aufruf
+
+---
+
+**Hinweis**: Dieses Projekt dient der Visualisierung von Roboterkomponenten und ist für Lehr- und Demonstrationszwecke optimiert.
