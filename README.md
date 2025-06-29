@@ -101,26 +101,6 @@ ProjektRoboCar/
 - **JavaScript ES6+**: Interaktionslogik
 - **Bootstrap Icons**: Icon-Set für UI-Elemente
 
-### Kamera-System
-```javascript
-// Beispiel Kamera-Positionen
-const componentCameraPositions = {
-    'mecanum-info': [
-        [0.42, -0.15, -0.04], // ul
-        [0.00, -0.36, 0.00],  // ll
-        [0.00, 0.45, 0.00],   // ur
-        [-0.35, 0.28, 0.04]   // lr
-    ],
-    'hc-sr04-back-info': [-0.27, -0.12, 0.03],
-    // ...weitere Positionen
-};
-```
-
-### 3D-Hotspot-System
-- Unsichtbare Kugeln (`opacity: 0`) an Komponentenpositionen
-- Raycasting für Maus-Interaktion
-- Dynamische Sichtbarkeit beim Hovern
-
 ## 🎨 Anpassung
 
 ### Neue Komponenten hinzufügen

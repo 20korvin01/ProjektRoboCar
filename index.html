@@ -17,9 +17,128 @@
         <div class="dropdown">
             <!-- Überschrift -->
             <h3><i class="bi bi-info-circle-fill"></i> Components and Sensors</h3>
+
             <!-- Dropdowns für die einzelnen Komponenten -->
+
+            <!-- Raspberry Pi 4 Model B -->
+            <button class="dropdown-title" onclick="toggleDropdown('raspberrypi4-info')"
+                style="margin-top: 10px;">Raspberry Pi 4 Model B</button>
+            <div class="dropdown-content" id="raspberrypi4-info">
+                <img src="img/raspberrypi4.png"
+                    style="width:100%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Description</h4>
+                    <p>The Raspberry Pi 4 Model B is a powerful single-board computer that acts as the brain of the
+                        Robocar. It processes sensor input, executes control algorithms, and manages communication with
+                        peripherals.</p>
+                </div>
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Key Features</h4>
+                    <ul>
+                        <li>Quad-core ARM Cortex-A72 processor</li>
+                        <li>1 GB to 8 GB RAM (varies by model)</li>
+                        <li>USB 3.0 and USB 2.0 ports</li>
+                        <li>Dual micro-HDMI ports for 4K display</li>
+                        <li>GPIO header for hardware interfacing</li>
+                        <li>Wi-Fi and Bluetooth connectivity</li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Main control unit of the Robocar</li>
+                        <li>Real-time sensor data processing</li>
+                        <li>Motor and actuator control</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <!-- Freenove 4WD Smart Car Baseplate -->
+            <button class="dropdown-title" onclick="toggleDropdown('baseplate-info')" style="margin-top: 10px;">Freenove
+                4WD Smart Car Baseplate</button>
+            <div class="dropdown-content" id="baseplate-info">
+                <img src="img/baseplate.png"
+                    style="width:100%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Description</h4>
+                    <p>The Freenove 4WD baseplate provides a sturdy chassis for the Robocar, including motor mounts,
+                        battery holder, and multiple mounting holes for sensors and controllers.</p>
+                </div>
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Key Features</h4>
+                    <ul>
+                        <li>Durable acrylic or metal base construction</li>
+                        <li>Houses 4 DC geared motors</li>
+                        <li>Supports various sensor and module placements</li>
+                        <li>Pre-drilled holes for Raspberry Pi and other boards</li>
+                        <li>Comes with wheels, screws, and spacers</li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Robotics and motion experiments</li>
+                        <li>Sensor integration and testing</li>
+                        <li>Educational platforms for programming and electronics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mecanum Wheels -->
+            <button class="dropdown-title" onclick="toggleDropdown('mecanum-info')" style="margin-top: 10px;">
+                Mecanum Wheels
+            </button>
+            <div class="dropdown-content" id="mecanum-info">
+                <img src="img/meccanum.png"
+                    style="width:50%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Dimensions</h4>
+                    <p>Typical size: 60 mm – 100 mm diameter, 30 mm – 50 mm width (varies by model)</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Key Features</h4>
+                    <ul>
+                        <li>Omnidirectional movement capability</li>
+                        <li>45° angled rollers enable lateral, diagonal, and rotational movement</li>
+                        <li>Typically used in 4-wheel configuration (X or O pattern)</li>
+                        <li>Requires individual motor control for each wheel</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-bezier2"></i> Working Principle</h4>
+                    <p>Mecanum wheels use angled rollers around the circumference to generate movement in multiple
+                        directions. By adjusting the speed and direction of each wheel, the vehicle can move forward,
+                        backward, sideways, diagonally, and rotate on the spot.</p>
+                    <p>Motion is achieved through vector addition of the individual wheel forces.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Mounting</h4>
+                    <ul>
+                        <li>Each wheel is mounted to a separate motor shaft</li>
+                        <li>Proper roller orientation is critical (front-left and rear-right: rollers form “/”)</li>
+                        <li>Often paired with encoders for precision control</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Mobile robots requiring high maneuverability</li>
+                        <li>Automated Guided Vehicles (AGVs)</li>
+                        <li>Warehouse and logistics platforms</li>
+                        <li>Research and education projects</li>
+                    </ul>
+                </div>
+            </div>
+
             <!-- HC-SR04 Front -->
-            <button class="dropdown-title" onclick="toggleDropdown('hc-sr04-front-info')">HC-SR04 - front</button>
+            <button class="dropdown-title" onclick="toggleDropdown('hc-sr04-front-info')"
+                style="margin-top: 10px;">HC-SR04 - front</button>
             <div class="dropdown-content" id="hc-sr04-front-info">
                 <img src="img/hc-sr04.png"
                     style="width:40%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
@@ -113,6 +232,53 @@
                 </div>
             </div>
 
+            <!-- LEDs -->
+            <button class="dropdown-title" onclick="toggleDropdown('leds-info')" style="margin-top: 10px;">LEDs</button>
+            <div class="dropdown-content" id="leds-info">
+                <img src="img/leds.png"
+                    style="width:40%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Description</h4>
+                    <p>These are standard small LEDs (Light Emitting Diodes) commonly used in electronics and model
+                        building. They emit light when an electric current passes through them.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Typical Specifications</h4>
+                    <ul>
+                        <li>Forward Voltage: 1.8 V – 3.3 V (depends on color)</li>
+                        <li>Forward Current: 10 mA – 20 mA</li>
+                        <li>Colors: Red, Green, Blue, Yellow, White, etc.</li>
+                        <li>Viewing Angle: Typically 20° – 60°</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-bezier2"></i> Working Principle</h4>
+                    <p>LEDs are diodes that emit light when forward-biased. They only allow current to flow in one
+                        direction. A suitable resistor is required in series to limit current and prevent damage.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Pinout</h4>
+                    <ul>
+                        <li>Anode (longer leg) – Positive (+)</li>
+                        <li>Cathode (shorter leg / flat edge) – Negative (−)</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Status indicators</li>
+                        <li>Lighting effects in models</li>
+                        <li>Visual feedback for electronic circuits</li>
+                    </ul>
+                </div>
+            </div>
+
+
             <!-- Infrared Obstacle Avoidance Sensor -->
             <button class="dropdown-title" onclick="toggleDropdown('ir-obstacle-info')" style="margin-top: 10px;">
                 Infrared Obstacle Avoidance Sensor
@@ -160,57 +326,6 @@
                         <li>Obstacle avoidance in robotics</li>
                         <li>Automatic door systems</li>
                         <li>Object detection in toys</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Mecanum Wheels -->
-            <button class="dropdown-title" onclick="toggleDropdown('mecanum-info')" style="margin-top: 10px;">
-                Mecanum Wheels
-            </button>
-            <div class="dropdown-content" id="mecanum-info">
-                <img src="img/meccanum.png"
-                    style="width:50%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
-
-                <div class="section">
-                    <h4><i class="bi bi-tools"></i> Dimensions</h4>
-                    <p>Typical size: 60 mm – 100 mm diameter, 30 mm – 50 mm width (varies by model)</p>
-                </div>
-
-                <div class="section">
-                    <h4><i class="bi bi-patch-question-fill"></i> Key Features</h4>
-                    <ul>
-                        <li>Omnidirectional movement capability</li>
-                        <li>45° angled rollers enable lateral, diagonal, and rotational movement</li>
-                        <li>Typically used in 4-wheel configuration (X or O pattern)</li>
-                        <li>Requires individual motor control for each wheel</li>
-                    </ul>
-                </div>
-
-                <div class="section">
-                    <h4><i class="bi bi-bezier2"></i> Working Principle</h4>
-                    <p>Mecanum wheels use angled rollers around the circumference to generate movement in multiple
-                        directions. By adjusting the speed and direction of each wheel, the vehicle can move forward,
-                        backward, sideways, diagonally, and rotate on the spot.</p>
-                    <p>Motion is achieved through vector addition of the individual wheel forces.</p>
-                </div>
-
-                <div class="section">
-                    <h4><i class="bi bi-tools"></i> Mounting</h4>
-                    <ul>
-                        <li>Each wheel is mounted to a separate motor shaft</li>
-                        <li>Proper roller orientation is critical (front-left and rear-right: rollers form “/”)</li>
-                        <li>Often paired with encoders for precision control</li>
-                    </ul>
-                </div>
-
-                <div class="section">
-                    <h4><i class="bi bi-car-front"></i> Applications</h4>
-                    <ul>
-                        <li>Mobile robots requiring high maneuverability</li>
-                        <li>Automated Guided Vehicles (AGVs)</li>
-                        <li>Warehouse and logistics platforms</li>
-                        <li>Research and education projects</li>
                     </ul>
                 </div>
             </div>
@@ -381,6 +496,103 @@
                     </ul>
                 </div>
             </div>
+
+            <!-- Active Buzzer -->
+            <button class="dropdown-title" onclick="toggleDropdown('buzzer-info')" style="margin-top: 10px;">Active
+                Buzzer</button>
+            <div class="dropdown-content" id="buzzer-info">
+                <img src="img/active_buzzer.png"
+                    style="width:40%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Description</h4>
+                    <p>An active buzzer is an electronic sounder that produces a tone when powered. It contains a
+                        built-in oscillator circuit, so it only needs a DC voltage to operate.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Typical Specifications</h4>
+                    <ul>
+                        <li>Operating Voltage: 3 V – 5 V DC</li>
+                        <li>Current Consumption: ~20 mA – 35 mA</li>
+                        <li>Sound Output: ~85 dB at 10 cm</li>
+                        <li>Frequency: Typically fixed around 2–4 kHz</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-bezier2"></i> Working Principle</h4>
+                    <p>The active buzzer has an internal oscillating circuit that drives the piezo element. Simply
+                        applying a DC voltage causes it to produce a continuous tone. Unlike passive buzzers, it does
+                        not require an external signal or PWM.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Pinout</h4>
+                    <ul>
+                        <li>Positive (+) – Often marked or longer pin</li>
+                        <li>Negative (−) – Often shorter pin or unmarked</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Alarms and notifications</li>
+                        <li>Timers and reminders</li>
+                        <li>Simple audio feedback in embedded systems</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mini Speaker -->
+            <button class="dropdown-title" onclick="toggleDropdown('speaker-info')" style="margin-top: 10px;">Mini
+                Speaker (2x)</button>
+            <div class="dropdown-content" id="speaker-info">
+                <img src="img/speaker.png"
+                    style="width:70%;border-radius:6px 6px 0 0;margin-bottom:0.7em;display:block;margin-left:auto;margin-right:auto;">
+
+                <div class="section">
+                    <h4><i class="bi bi-patch-question-fill"></i> Description</h4>
+                    <p>These compact rectangular speakers are ideal for small audio projects. They are passive speakers
+                        and require an amplifier to produce sound from a signal source.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Typical Specifications</h4>
+                    <ul>
+                        <li>Power Rating: Max. 3 W</li>
+                        <li>Impedance: 8 Ω</li>
+                        <li>Dimensions: Approx. 40 mm × 20 mm</li>
+                        <li>Type: Passive (no built-in amplifier)</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-bezier2"></i> Working Principle</h4>
+                    <p>As passive components, these speakers convert analog electrical signals into sound waves using a
+                        magnetic coil and diaphragm. They require a properly amplified audio signal.</p>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-tools"></i> Connections</h4>
+                    <ul>
+                        <li>Two terminals (solder pads or wires)</li>
+                        <li>Polarity is generally not critical for single-speaker use</li>
+                    </ul>
+                </div>
+
+                <div class="section">
+                    <h4><i class="bi bi-car-front"></i> Applications</h4>
+                    <ul>
+                        <li>Embedded audio output</li>
+                        <li>Voice or sound playback in robots or toys</li>
+                        <li>Signal tones or music in microcontroller projects</li>
+                    </ul>
+                </div>
+            </div>
+
+
 
         </div>
         <!-- Weitere Dropdowns nach gleichem Muster -->

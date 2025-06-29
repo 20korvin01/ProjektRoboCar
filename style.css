@@ -7,57 +7,73 @@ body {
 }
 header {
     width: 100%;
-    height: 100px;
+    height: 70px;
     background: #222;
     color: #fff;
     padding: 1em 2em;
     box-sizing: border-box;
     text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 aside {
     position: absolute;
-    top: calc(100px + 2em);
+    top: calc(70px + 2em);
     left: 20px;
     background: #222;
     color: #fff;
     padding: 1em;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    height: calc(100vh - 100px - 5em);
-    max-height: calc(100vh - 100px - 3em);
+    height: calc(100vh - 80px - 5em);
+    max-height: calc(100vh - 80px - 3em);
     overflow-y: auto;
-    scrollbar-width: none; /* Firefox Scrollbar ausblenden */
+    border: 10px solid #222;
 }
+
+/* Benutzerdefinierte Scrollbar für aside */
 aside::-webkit-scrollbar {
-    display: none; /* Webkit Scrollbar ausblenden */
+    width: 12px;
 }
 
-/* Fake-Scrollbar */
-aside::after {
-    content: '';
-    position: absolute;
-    top: 5%;
-    right: 4px;
-    width: 8px;
-    height: 90%;
-    background: #444;
-    border-radius: 8px;
-    opacity: 0.5;
-    pointer-events: none;
-    z-index: 2;
-    display: none;
+aside::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 6px;
+    margin: 8px 0;
 }
 
-aside.scrolling::after {
-    display: block;
+aside::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #555, #444);
+    border-radius: 6px;
+    border: 2px solid #333;
+    transition: background 0.3s ease;
+}
+
+aside::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #666, #555);
+}
+
+aside::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(180deg, #777, #666);
+}
+
+/* Firefox Scrollbar */
+aside {
+    scrollbar-width: thin;
+    scrollbar-color: #555 #333;
 }
 
 #viewer-container {
     position: absolute;
-    top: calc(100px + 2em);
+    top: calc(70px + 2em);
     right: 20px;
     width: 50vw;
-    height: calc(100vh - 100px - 3em);
+    height: calc(100vh - 70px - 3em);
     border-radius: 24px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.2);
     background: #222;
