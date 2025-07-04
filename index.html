@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Robocar</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="viewer.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
@@ -598,6 +599,8 @@
         <!-- Weitere Dropdowns nach gleichem Muster -->
     </aside>
     <div id="viewer-container">
+        <button class="model-switch-btn" id="model-switch-btn" title="Switch loaded Model"><span id="model-switch-label">Scaniverse</span></button>
+        <div id="loading-bar-container"><div id="loading-bar"></div></div>
         <!-- Das Canvas wird hier per JS eingefügt -->
     </div>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
