@@ -1,12 +1,12 @@
-// Initialisierung der Szene, Kamera und Renderer
+// Initialization of scene, camera, and renderer
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x111111);
 
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-// Kamera-Startposition festlegen
+// Set camera start position
 camera.position.set(-0.18459426309019683, -1.2678479290429752, -4.833061823198169);
-// Zoom-Startwert festlegen
-camera.zoom = 4; // Wert anpassen, um den Zoom zu erhöhen
+// Set initial zoom value
+camera.zoom = 4;
 camera.updateProjectionMatrix();
 
 const renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -17,17 +17,17 @@ renderer.setSize(
 renderer.setPixelRatio(window.devicePixelRatio);
 document.getElementById('viewer-container').appendChild(renderer.domElement);
 
-// OrbitControls für Mausinteraktion
+// OrbitControls for mouse interaction
 const controls = new THREE.OrbitControls(camera, renderer.domElement);
-controls.minDistance = 2; // Mindestabstand zur Szene, Wert ggf. anpassen
-controls.maxDistance = 5; // Optional: maximaler Abstand
-controls.enablePan = false; // Verschieben erlauben
-controls.enableZoom = true; // Zoomen erlauben
-controls.minAzimuthAngle = -Infinity; // 360° um Z
-controls.maxAzimuthAngle = Infinity; // 360° um Z
-controls.screenSpacePanning = false; // verhindert Gimbal Lock
+controls.minDistance = 2; // Minimum distance to scene, adjust if needed
+controls.maxDistance = 5; // Optional: maximum distance
+controls.enablePan = false; // Allow panning
+controls.enableZoom = true; // Allow zoom
+controls.minAzimuthAngle = -Infinity; // 360° around Z
+controls.maxAzimuthAngle = Infinity; // 360° around Z
+controls.screenSpacePanning = false; // Prevents gimbal lock
 
-// Beleuchtung
+// Lighting
 const ambientLight = new THREE.AmbientLight(0x404040, 3);
 scene.add(ambientLight);
 
@@ -39,12 +39,12 @@ const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.5);
 directionalLight2.position.set(-1, -1, -1);
 scene.add(directionalLight2);
 
-// Ladebalken-Elemente aus dem DOM holen (werden in index.html erzeugt und in viewer.css gestylt)
+// Get loading bar elements from DOM (created in index.html and styled in viewer.css)
 const viewer = document.getElementById('viewer-container');
 const loadingBarContainer = document.getElementById('loading-bar-container');
 const loadingBar = document.getElementById('loading-bar');
 
-// Modellwechsel-Logik
+// Model switch logic
 let currentModel = 'scaniverse';
 let loadedObject = null;
 const modelFiles = {
@@ -59,14 +59,14 @@ const modelFiles = {
 };
 
 function loadModel(modelKey) {
-    // Ladebalken zurücksetzen und anzeigen
+    // Reset and show loading bar
     loadingBar.style.width = '0%';
     loadingBarContainer.style.opacity = '1';
     if (!viewer.contains(loadingBarContainer)) {
         viewer.appendChild(loadingBarContainer);
     }
 
-    // Vorheriges Modell entfernen
+    // Remove previous model
     if (loadedObject) {
         scene.remove(loadedObject);
         loadedObject = null;
@@ -98,17 +98,17 @@ function loadModel(modelKey) {
                     setTimeout(() => loadedText.remove(), 800);
                 }, 1700);
 
-            object.rotation.x = -Math.PI / 2; // ggf. anpassen
+            object.rotation.x = -Math.PI / 2; // Adjust if needed
             scene.add(object);
             loadedObject = object;
-            // Kamera automatisch positionieren
+            // Automatically position camera
             const box = new THREE.Box3().setFromObject(object);
             const size = box.getSize(new THREE.Vector3()).length();
             const center = box.getCenter(new THREE.Vector3());
             object.position.sub(center);
             controls.update();
 
-            // klickbare Kugeln für jedes Element im Objekt
+            // Clickable spheres for each element in the object
             const sphereGeometry = new THREE.SphereGeometry(0.08, 50, 50);
 
             // Raspberry Pi
@@ -133,7 +133,7 @@ function loadModel(modelKey) {
             scene.add(baseplateDot);
             interactiveSpheres.push(baseplateDot);
 
-            // Mecanum-Räder
+            // Mecanum wheels
             const mecanumDot_ll = new THREE.Mesh(sphereGeometry, new THREE.MeshBasicMaterial({ color: 0x4791b8, transparent: true, opacity: 0 }));
             mecanumDot_ll.position.set(-0.1653560465695978, 0.3035109632565023, 0.47661844296516637);
             mecanumDot_ll.userData = { dropdownId: 'mecanum-info', componentName: 'Mecanum Wheels', wheelPosition: 'll' };
@@ -158,21 +158,21 @@ function loadModel(modelKey) {
             scene.add(mecanumDot_ur);
             interactiveSpheres.push(mecanumDot_ur);
 
-            // HC-SR04 Sensor - back
+            // HC-SR04 sensor - back
             const hcSr04BackDot = new THREE.Mesh(sphereGeometry, new THREE.MeshBasicMaterial({ color: 0x4791b8, transparent: true, opacity: 0 }));
             hcSr04BackDot.position.set(0.3980710922222699, 0.2492549249916678, 0.35053568065768803);
             hcSr04BackDot.userData = { dropdownId: 'hc-sr04-back-info', componentName: 'HC-SR04 - back' };
             scene.add(hcSr04BackDot);
             interactiveSpheres.push(hcSr04BackDot);
 
-            // HC-SR04 Front
+            // HC-SR04 front
             const hcSr04FrontDot = new THREE.Mesh(sphereGeometry, new THREE.MeshBasicMaterial({ color: 0x4791b8, transparent: true, opacity: 0 }));
             hcSr04FrontDot.position.set(-0.3740203890963598, 0.14717203651566768, -0.7152895740304478);
             hcSr04FrontDot.userData = { dropdownId: 'hc-sr04-front-info', componentName: 'HC-SR04 - front' };
             scene.add(hcSr04FrontDot);
             interactiveSpheres.push(hcSr04FrontDot);
 
-            // IR Obstacle Sensor
+            // IR obstacle sensor
             const irObstacleDot = new THREE.Mesh(sphereGeometry, new THREE.MeshBasicMaterial({ color: 0x4791b8, transparent: true, opacity: 0 }));
             irObstacleDot.position.set(-0.42625548818964143, -0.3576001398934343, -0.489621879489366);
             irObstacleDot.userData = { dropdownId: 'ir-obstacle-info', componentName: 'IR Obstacle Avoidance Sensor' };
@@ -211,14 +211,14 @@ function loadModel(modelKey) {
             scene.add(ledsBackDot_ur);
             interactiveSpheres.push(ledsBackDot_ur);
 
-            // LED Bar
+            // LED bar
             const ledBarDot = new THREE.Mesh(sphereGeometry, new THREE.MeshBasicMaterial({ color: 0x4791b8, transparent: true, opacity: 0 }));
             ledBarDot.position.set(0.1640813961897004, 0.7289624529092875, -0.024135065548005485);
             ledBarDot.userData = { dropdownId: 'led-bar-info', componentName: 'LED Bar' };
             scene.add(ledBarDot);
             interactiveSpheres.push(ledBarDot);
 
-            // Servo Motor
+            // Servo motor
             const servoDot = new THREE.Mesh(sphereGeometry, new THREE.MeshBasicMaterial({ color: 0x4791b8, transparent: true, opacity: 0 }));
             servoDot.position.set(-0.2649312291829016, 0.17174265360127894, -0.4903360654059645);
             servoDot.userData = { dropdownId: 'servo-info', componentName: 'Servo Motor' };
@@ -253,7 +253,7 @@ function loadModel(modelKey) {
             scene.add(cameraDot);
             interactiveSpheres.push(cameraDot);
 
-            // Active Buzzer
+            // Active buzzer
             const activeBuzzerDot = new THREE.Mesh(sphereGeometry, new THREE.MeshBasicMaterial
                 ({ color: 0x4791b8, transparent: true, opacity: 0 }));
             activeBuzzerDot.position.set(-0.25892377287770607, -0.19083610651709026, -0.6077220432256248);
@@ -279,14 +279,14 @@ function loadModel(modelKey) {
             function (error) {
                 loadingBarContainer.style.background = '#ff0000';
                 loadingBar.style.background = '#ff0000';
-                console.error('Fehler beim Laden der OBJ-Datei:', error);
+                console.error('Error loading OBJ file:', error);
             }
         );
     });
 }
 
 
-// Switch-Button Event und Label-Update
+// Switch button event and label update
 const switchBtn = document.getElementById('model-switch-btn');
 const modelSwitchLabel = document.getElementById('model-switch-label');
 function updateModelLabel() {
@@ -301,19 +301,19 @@ if (switchBtn) {
         updateModelLabel();
     });
 }
-// Initiales Modell laden und Label setzen
+// Load initial model and set label
 loadModel(currentModel);
 updateModelLabel();
 
 
 
 
-// viewer ist bereits oben deklariert
+// viewer is already declared above
 renderer.setSize(viewer.clientWidth, viewer.clientHeight);
 camera.aspect = viewer.clientWidth / viewer.clientHeight;
 camera.updateProjectionMatrix();
 
-// Tooltip für Hover-Text erstellen
+// Create tooltip for hover text
 const tooltip = document.createElement('div');
 tooltip.style.position = 'absolute';
 tooltip.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
@@ -335,42 +335,42 @@ window.addEventListener('resize', () => {
     renderer.setSize(viewer.clientWidth, viewer.clientHeight);
 });
 
-// Raycaster für Klick-Positionen
+// Raycaster for click positions
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 
-// Array zum Speichern der interaktiven Kugeln
+// Array to store interactive spheres
 const interactiveSpheres = [];
 let hoveredSphere = null;
 const originalColor = 0x4791b8;
 const hoverColor = 0x4791b8;
 
 viewer.addEventListener('mousemove', (event) => {
-    // Mausposition in Normalized Device Coordinates (-1 bis +1)
+    // Mouse position in Normalized Device Coordinates (-1 to +1)
     const rect = viewer.getBoundingClientRect();
     mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
     raycaster.setFromCamera(mouse, camera);
 
-    // Prüfe Schnittpunkte nur mit den interaktiven Kugeln
+    // Check intersections only with interactive spheres
     const intersects = raycaster.intersectObjects(interactiveSpheres, false);
 
     if (intersects.length > 0) {
         const newHoveredSphere = intersects[0].object;
 
-        // Wenn eine neue Kugel gehovered wird
+        // If a new sphere is hovered
         if (hoveredSphere !== newHoveredSphere) {
-            // Alte Kugel unsichtbar machen
+            // Make old sphere invisible
             if (hoveredSphere) {
                 hoveredSphere.material.opacity = 0;
             }
-            // Neue Kugel sichtbar machen und highlighten
+            // Make new sphere visible and highlight
             hoveredSphere = newHoveredSphere;
-            hoveredSphere.material.opacity = 0.5; // Transparenter für bessere Sichtbarkeit
+            hoveredSphere.material.opacity = 0.5;
             hoveredSphere.material.color.setHex(hoverColor);
             viewer.style.cursor = 'pointer';
 
-            // Tooltip anzeigen
+            // Show tooltip
             const componentName = hoveredSphere.userData.componentName;
             const wheelPosition = hoveredSphere.userData.wheelPosition;
             const displayText = wheelPosition ? `${componentName} (${wheelPosition})` : componentName;
@@ -378,30 +378,30 @@ viewer.addEventListener('mousemove', (event) => {
             tooltip.style.display = 'block';
         }
 
-        // Tooltip-Position aktualisieren (folgt der Maus)
+        // Update tooltip position (follows mouse)
         tooltip.style.left = (event.clientX + 10) + 'px';
         tooltip.style.top = (event.clientY - 10) + 'px';
     } else {
-        // Keine Kugel gehovered - alle unsichtbar machen
+        // No sphere hovered - make all invisible
         if (hoveredSphere) {
             hoveredSphere.material.opacity = 0;
             hoveredSphere = null;
             viewer.style.cursor = 'default';
 
-            // Tooltip verstecken
+            // Hide tooltip
             tooltip.style.display = 'none';
         }
     }
 });
 
 viewer.addEventListener('mousedown', (event) => {
-    // Mausposition in Normalized Device Coordinates (-1 bis +1)
+    // Mouse position in Normalized Device Coordinates (-1 to +1)
     const rect = viewer.getBoundingClientRect();
     mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
     mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
     raycaster.setFromCamera(mouse, camera);
 
-    // Prüfe zuerst Schnittpunkte mit interaktiven Kugeln
+    // First check intersections with interactive spheres
     const sphereIntersects = raycaster.intersectObjects(interactiveSpheres, false);
     if (sphereIntersects.length > 0) {
         const clickedSphere = sphereIntersects[0].object;
@@ -409,7 +409,7 @@ viewer.addEventListener('mousedown', (event) => {
         return; // Verhindere weitere Klick-Behandlung
     }
 
-    // Fallback: Prüfe Schnittpunkte mit allen Objekten in der Szene
+    // Fallback: check intersections with all objects in the scene
     const intersects = raycaster.intersectObjects(scene.children, true);
     if (intersects.length > 0) {
         const point = intersects[0].point;
@@ -417,24 +417,24 @@ viewer.addEventListener('mousedown', (event) => {
     }
 });
 
-// Funktion zum Öffnen des entsprechenden Dropdowns und Ausrichten der Kamera
+// Function to open the corresponding dropdown and align the camera
 function handleSphereClick(sphere) {
     const dropdownId = sphere.userData.dropdownId;
     const componentName = sphere.userData.componentName;
     const wheelPosition = sphere.userData.wheelPosition;
 
-    // Dropdown öffnen (nutzt die vorhandene toggleDropdown Funktion)
+    // Open dropdown (uses the existing toggleDropdown function)
     if (typeof toggleDropdown === 'function') {
         const dropdownContent = document.getElementById(dropdownId);
         if (dropdownContent && !dropdownContent.classList.contains('active')) {
             toggleDropdown(dropdownId);
 
-            // Kugel temporär anzeigen nach kurzer Verzögerung (damit Kamera-Animation startet)
+            // Show sphere temporarily after short delay (so camera animation starts)
             setTimeout(() => {
                 showSphereTemporarily(dropdownId, wheelPosition);
             }, 300);
 
-            // Zum Dropdown scrollen nach kurzer Verzögerung (damit Animation Zeit hat)
+            // Scroll to dropdown after short delay (so animation has time)
             setTimeout(() => {
                 const dropdownButton = dropdownContent.previousElementSibling;
                 if (dropdownButton) {
@@ -447,7 +447,7 @@ function handleSphereClick(sphere) {
         }
     }
 
-    // Spezielle Behandlung für Mecanum-Räder: zur spezifischen Rad-Position fahren
+    // Special handling for mecanum wheels: move to specific wheel position
     if (dropdownId === 'mecanum-info' && wheelPosition && typeof animateCameraTo === 'function') {
         const wheelPositions = {
             'ul': [-3.2434069601386466, -0.016722713633769752, -0.6951247068454449],
@@ -461,7 +461,7 @@ function handleSphereClick(sphere) {
         }
     }
 
-    // Spezielle Behandlung für LEDs: zur spezifischen LED-Position fahren
+    // Special handling for LEDs: move to specific LED position
     if (dropdownId === 'leds-info' && wheelPosition && typeof animateCameraTo === 'function') {
         const ledPositions = {
             'back': [1.836944727516901, 1.3470064534296404, 1.4529051211060071],
@@ -472,32 +472,31 @@ function handleSphereClick(sphere) {
             animateCameraTo(ledPositions[wheelPosition]);
         }
     }
-
-    // console.log(`Clicked on ${componentName}${wheelPosition ? ` (${wheelPosition})` : ''} - Opening dropdown ${dropdownId}`);
 }
 
-// Funktion zum kurzen Anzeigen einer Kugel mit orangem Blinken
+// Function to briefly show a sphere with orange blinking
 function showSphereTemporarily(dropdownId, wheelPosition = null) {
     // Finde die entsprechenden Kugeln
     let targetSpheres = [];
 
+    // Find the corresponding spheres
     for (const sphere of interactiveSpheres) {
         if (sphere.userData.dropdownId === dropdownId) {
-            // Für LEDs: alle Kugeln mit der gleichen wheelPosition sammeln
+            // For LEDs: collect all spheres with the same wheelPosition
             if (dropdownId === 'leds-info' && wheelPosition && sphere.userData.wheelPosition === wheelPosition) {
                 targetSpheres.push(sphere);
             }
-            // Für Mecanum-Räder: spezifische Position prüfen
+            // For mecanum wheels: check specific position
             else if (dropdownId === 'mecanum-info' && wheelPosition && sphere.userData.wheelPosition === wheelPosition) {
                 targetSpheres.push(sphere);
-                break; // Bei Mecanum-Rädern nur eine Kugel
+                break; // Only one sphere for mecanum wheels
             }
-            // Für andere Komponenten ohne wheelPosition
+            // For other components without wheelPosition
             else if (!wheelPosition && !sphere.userData.wheelPosition) {
                 targetSpheres.push(sphere);
-                break; // Bei anderen Komponenten nur eine Kugel
+                break; // Only one sphere for other components
             }
-            // Fallback: erste passende Kugel wenn keine spezifische Position angegeben
+            // Fallback: first matching sphere if no specific position given
             else if (!wheelPosition && targetSpheres.length === 0) {
                 targetSpheres.push(sphere);
             }
@@ -506,18 +505,18 @@ function showSphereTemporarily(dropdownId, wheelPosition = null) {
 
     if (targetSpheres.length === 0) return;
 
-    // Blink-Animation für 1 Sekunde für alle gefundenen Kugeln
+    // Blink animation for 1 second for all found spheres
     let blinkCount = 0;
-    const maxBlinks = 6; // 3 vollständige Blink-Zyklen in 1 Sekunde
+    const maxBlinks = 6; // 3 full blink cycles in 1 second
 
     const blinkInterval = setInterval(() => {
         targetSpheres.forEach(sphere => {
             if (blinkCount % 2 === 0) {
-                // Kugel orange und sichtbar machen
+                // Make sphere orange and visible
                 sphere.material.opacity = 0.5;
                 sphere.material.color.setHex(0xff6600); // Orange
             } else {
-                // Kugel unsichtbar machen
+                // Make sphere invisible
                 sphere.material.opacity = 0;
             }
         });
@@ -526,20 +525,20 @@ function showSphereTemporarily(dropdownId, wheelPosition = null) {
 
         if (blinkCount >= maxBlinks) {
             clearInterval(blinkInterval);
-            // Kugeln endgültig ausblenden
+            // Finally hide spheres
             targetSpheres.forEach(sphere => {
                 sphere.material.opacity = 0;
-                sphere.material.color.setHex(0x4791b8); // Zurück zur ursprünglichen Farbe
+                sphere.material.color.setHex(0x4791b8); // Back to original color
             });
         }
     }, 1000 / maxBlinks);
 }
 
-// Animation
+// Animation loop
 function animate() {
     requestAnimationFrame(animate);
     controls.update();
     renderer.render(scene, camera);
-    // console.log('Kamera-Position:', camera.position.x, camera.position.y, camera.position.z);
+    // console.log('Camera position:', camera.position.x, camera.position.y, camera.position.z);
 }
 animate();

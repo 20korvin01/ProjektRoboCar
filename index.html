@@ -4,24 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robocar</title>
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/favicon.png">
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="viewer.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/PLYLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/OBJLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/MTLLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="model.js"></script>
+    <script src="dropdown.js"></script>
+    <!-- Title -->
+    <title>Robocar</title>
 </head>
 
 <body>
+    <!-- Header with title -->
     <header>
         <h1 style="margin: 0;">Robocar Info Dashboard</h1>
     </header>
+    <!-- Main content area -->
     <aside>
         <div class="dropdown">
-            <!-- Überschrift -->
+            <!-- Aside heading -->
             <h3><i class="bi bi-info-circle-fill"></i> Components and Sensors</h3>
 
-            <!-- Dropdowns für die einzelnen Komponenten -->
-
+            <!-- Dropdowns for individual components -->
             <!-- Raspberry Pi 4 Model B -->
             <button class="dropdown-title" onclick="toggleDropdown('raspberrypi4-info')"
                 style="margin-top: 10px;">Raspberry Pi 4 Model B</button>
@@ -54,7 +66,6 @@
                     </ul>
                 </div>
             </div>
-
 
             <!-- Freenove 4WD Smart Car Baseplate -->
             <button class="dropdown-title" onclick="toggleDropdown('baseplate-info')" style="margin-top: 10px;">Freenove
@@ -593,17 +604,15 @@
                     </ul>
                 </div>
             </div>
-
-
-
         </div>
-        <!-- Weitere Dropdowns nach gleichem Muster -->
     </aside>
+    <!-- Viewer container for 3D model -->
     <div id="viewer-container">
         <button class="model-switch-btn" id="model-switch-btn" title="Switch loaded Model"><span id="model-switch-label">Scaniverse</span></button>
         <div id="loading-bar-container"><div id="loading-bar"></div></div>
-        <!-- Das Canvas wird hier per JS eingefügt -->
     </div>
+
+    <!-- Footer with links and contact information -->
     <footer>
         <div class="footer-left">
             <a href="https://github.com/20korvin01/ProjektRoboCar" target="_blank" class="footer-link" title="GitHub Repository">
@@ -620,13 +629,6 @@
             <span class="footer-year">© 2025</span>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/PLYLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/OBJLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/MTLLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
-    <script src="model.js"></script>
-    <script src="dropdown.js"></script>
 </body>
 
 </html>
