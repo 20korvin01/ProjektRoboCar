@@ -45,12 +45,16 @@ const loadingBarContainer = document.getElementById('loading-bar-container');
 const loadingBar = document.getElementById('loading-bar');
 
 // Model switch logic
-let currentModel = 'scaniverse';
+let currentModel = 'scaniverse1'; // Default model
 let loadedObject = null;
 const modelFiles = {
-    scaniverse: {
-        mtl: 'model/Mesh_scaniverse.mtl',
-        obj: 'model/Mesh_scaniverse.obj'
+    scaniverse1: {
+        mtl: 'model/Mesh_scaniverse1.mtl',
+        obj: 'model/Mesh_scaniverse1.obj'
+    },
+    scaniverse2: {
+        mtl: 'model/Mesh_scaniverse2.mtl',
+        obj: 'model/Mesh_scaniverse2.obj'
     },
     agisoft: {
         mtl: 'model/Mesh_agisoft.mtl',
@@ -286,17 +290,28 @@ function loadModel(modelKey) {
 }
 
 
-// Switch button event and label update
+
+// Switch button event and label update for three models
 const switchBtn = document.getElementById('model-switch-btn');
 const modelSwitchLabel = document.getElementById('model-switch-label');
+const modelOrder = ['scaniverse1', 'scaniverse2', 'agisoft'];
+function getModelLabel(key) {
+    if (key === 'scaniverse1') return 'Scaniverse 1';
+    if (key === 'scaniverse2') return 'Scaniverse 2';
+    if (key === 'agisoft') return 'Agisoft';
+    return key;
+}
 function updateModelLabel() {
     if (modelSwitchLabel) {
-        modelSwitchLabel.textContent = currentModel === 'scaniverse' ? 'Scaniverse' : 'Agisoft';
+        modelSwitchLabel.textContent = getModelLabel(currentModel);
     }
 }
 if (switchBtn) {
     switchBtn.addEventListener('click', () => {
-        currentModel = currentModel === 'scaniverse' ? 'agisoft' : 'scaniverse';
+        // Find current index and go to next
+        const idx = modelOrder.indexOf(currentModel);
+        const nextIdx = (idx + 1) % modelOrder.length;
+        currentModel = modelOrder[nextIdx];
         loadModel(currentModel);
         updateModelLabel();
     });
